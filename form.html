@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <h2>REGISTRATION FORM</h2>
+    <form id="register" action="#">
+        <div class="form-test">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div class="form-test">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address">
+        </div>
+        <div class="form-test">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div class="form-test">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" minlength="8" maxlength="25" required>
+        </div>
+        <div class="form-test">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" maxlength="12">
+        </div>
+        <div class="form-test">
+            <label for="date">Date Of Birth</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <div class="form-radio">
+            <p>Select Gender</p>
+            <input type="radio" name="gender" value="male" id="gender">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="female" id="gender">
+            <label for="female">Female</label>
+            <input type="radio" name="gender" value="others" id="gender">
+            <label for="others">Others</label>
+        </div>
+        <div class="submit">
+            <button type="reset">Reset</button>
+            <button type="button" onclick="formData()" >Submit</button>
+        </div>
+    </form>
+    <div class="userlist">
+        <tr class="dynamic" id="dummy">
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Phone No.</th>
+            <th>D.O.B</th>
+            <th>Gender</th>
+        </tr>
+        <tbody id="showusers">
+        </tbody>
+    </div>
+</body>
+<Script>
+    showData();
+    function formData()
+    {
+    let name,address,email,password,phone,date,gender;
+    name=document.getElementById("name").value;
+    address=document.getElementById("address").value;
+    email=document.getElementById("email").value;
+    password=document.getElementById("password").value;
+    phone=document.getElementById("phone").value;
+    date=document.getElementById("date").value;
+    gender=document.getElementById("gender").value;
+
+    let storage_data=new Array();
+    storage_data=JSON.parse (localStorage.getItem("users"))?JSON.parse (localStorage.getItem("users")):[]
+
+    storage_data.push({
+        "name":name,
+        "address":address,
+        "email":email,
+        "password":password,
+        "phone":phone,
+        "date":date,
+        "gender":gender
+    })
+
+    localStorage.setItem("users",JSON.stringify(storage_data));
+    }
+    function showData()
+    {
+        let newData=document.getElementById("dummy")
+        newData.className="dynamic";
+        newData.innerHTML="<th>Name</th><th>Address</th><th>Email</th><th>Password</th><th>Phone No.</th><th>D.O.B</th> <th>Gender</th>";
+        document.getElementById("showusers").appendChild(newData);
+        // var table=document.getElementById("userdata").getElementsByTagName("tbody");
+        // var newrow=table.insertRow(table.length);
+        // var cell1=newrow.insertCell(0);
+        //     cell1.innerHTML=data.name;
+
+    }
+
+</Script>
+</html>

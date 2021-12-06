@@ -1,0 +1,21 @@
+.form-test label {
+  display: block;
+  font: 0.9rem "Fira Sans", sans-serif;
+}
+
+input[type="submit"],
+label {
+  margin-top: 1rem;
+}
+input {
+  margin-top: 5px;
+}
+.form-radio {
+  display: inline-block;
+}
+.submit {
+  margin-top: 10px;
+}
+.userlist {
+  margin-top: 30px;
+}
